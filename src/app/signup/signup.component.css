@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('src//assets//images//pexels-pixabay-459203.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+table{
+    margin-left: 20px;
+}
+
+select{
+    margin-top: 20px;
+    height: 60px;
+    width: 340px;
+    text-align: center;
+    border-radius: 50px;
+}
+li {
+    float: left;
+    width: auto;
+    list-style: outside circle white;
+    margin-left:25px;
+}
+ul{
+    margin-bottom: 30px;
+}
+td{
+    padding: 10px;
+}
+.wrapper{
+    width: 840px;
+    background: transparent;
+    border:2px solid rgb(255, 255, 255);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+    
+}
+.wrapper h1{
+    font-size: 36px;
+    text-align: center;
+}
+.wrapper .input-box{
+    width: 340px;
+    height: 60px;
+    position: relative;
+    margin-top: 20px;
+   
+}
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 40px 20px 20px;
+}
+.input-box input::placeholder{
+    color: #fff;
+    text-align: center;
+
+}
+
+.wrapper .btn{
+    width: 110%;
+    height: 45px;
+    background: #fff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    color: #333;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-left: 180px;
+}
+

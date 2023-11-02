@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="home"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarColor03">
+        <ul class="navbar-nav me-auto">
+
+            <!--Home-->
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="home">&nbsp;Home
+              <span class="visually-hidden">(current)</span>
+            </a>
+          </li>
+          
+           <!--dropdown-->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" routerLink="#" role="button" aria-haspopup="true" aria-expanded="false">Transport</a>
+            <div class="dropdown-menu" style="text-align: center;">
+              <a class="dropdown-item" href="https://www.google.com/travel/flights?tfs=CBwQARoaEgoyMDIzLTExLTAxagwIAhIIL20vMDljNndAAUgBcAGCAQsI____________AZgBAg&tfu=KgA" target="_blank">Flights</a>
+              <a class="dropdown-item" href="https://www.irctc.co.in/nget/train-search" target="_blank">Trains</a>
+              <a class="dropdown-item" href="https://tickets.paytm.com/bus/" target="_blank">Buses</a>
+            </div>
+        </li>
+        </ul>
+        <!--About us -->
+        <form class="d-flex">
+            <ul class="navbar-nav me-auto">
+              <!--Abous us
+                <li class="nav-item" >
+                    <a class="nav-link" routerLink="#">About us</a>
+                  </li>
+                  -->
+                   <!--Sign In
+                   <li class="nav-item" *ngIf="getLoginStatus()===false">
+                    <a class="nav-link" routerLink="signin">Sign In</a>
+                </li>
+                <li class="nav-item" *ngIf="getLoginStatus()===true">
+                    <a class="nav-link" (click)="logout()">Logout</a>
+                </li>
+              -->
+
+              <!-- Sign In -->
+              <li class="nav-item" *ngIf="getLoginStatus() === false">
+                <a class="nav-link" routerLink="signin">Sign In</a>
+              </li>
+
+              <!-- Welcome User & Logout -->
+              <li class="nav-item" *ngIf="getLoginStatus() === true">
+                <div class="dropdown">
+                  <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Welcome {{ getUserName() }}
+                  </a>
+                  <div class="dropdown-menu" style="text-align: center">
+                    <a class="dropdown-item" >Your Bookings</a>
+                    <a class="dropdown-item" (click)="logout()">Logout</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            
+          </form>
+      </div>
+    </div>
+  </nav>

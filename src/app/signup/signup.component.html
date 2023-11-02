@@ -1,0 +1,75 @@
+<body>
+    
+    <div class="wrapper">
+        
+            <h1>REGISTER</h1>
+            
+            <table>
+                <tr>
+                    <td>
+                        <!--NAME-->
+                        <div class="input-box">
+                            <input type="text" name= "name" placeholder="Enter name"  [(ngModel)]="user.name" required>
+                        </div>
+                    </td>
+                    <td>
+                        <!--Email-->
+                        <div class="input-box">
+                            <input type="email" name = "emailId" placeholder="Enter Email ID"  [(ngModel)]="user.email_id" required>
+                        </div>
+                     </td>
+                </tr>
+                <tr>
+            <td>
+            
+             <!--Gender-->
+             <select name="gender" [(ngModel)]="user.gender">
+                <option value="" selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+            </select>
+            </td>
+            <td>
+            <!-- Password -->
+                <div class="input-box">
+                    <input type="text" name="password" placeholder="Enter Password" [(ngModel)]="user.password" required (keyup)="validatePassword()">
+                </div>
+                <!--<p class="error-message" *ngIf="passwordErrorMessage">{{passwordErrorMessage}}</p>-->
+  
+        </td>
+        </tr>
+        <tr>
+        <td>
+            <!--Country-->
+            <select class="Country" [(ngModel)]="user.country">
+                <option value="" selected>Select Country</option>
+                <option value="{{country.cca3}}" *ngFor="let country of countries">{{country.name.common}}</option>
+              </select>
+        </td>
+        <td>
+            <!-- Retype Password -->
+            <div class="input-box">
+                <input type="password" name="retypepassword" placeholder="Retype Password" [(ngModel)]="user.retypepassword" required (keyup)="validatePassword()">
+            </div>
+            <p class="error-message" *ngIf="!passwordMatches">{{passwordErrorMessage}}</p>
+  
+        </td>
+        </tr>
+    </table>
+            <!--Password verify   
+            <ul id="unorderslist" class="list" style="text-align: left;">
+                <li id="op1">one UpperCase</li>
+                <li id="op3">one Special Character</li>
+                <li id="op2">one LowerCase</li>
+                <li id="op5">one number</li>
+                <li id="op4">Minimum 8 Characters</li>
+            </ul>--> 
+           
+            <div class="input-box">
+            <button type="submit" class="btn" (click)="register()">Register</button>
+            </div>
+            
+        
+        </div>
+</body>
