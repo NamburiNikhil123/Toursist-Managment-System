@@ -5,11 +5,14 @@
         
             <h1>Login </h1>
             <div class="input-box">
-                <input type="email" name = "emailId" #emailId="ngModel" placeholder="Enter Email ID"  ngModel>
+                <input type="email" name = "emailId" #emailId="ngModel" placeholder="Enter Email ID"  ngModel required  email="true">
             </div>
+            &nbsp;
+
             <div class="input-box">
-                <input type="password" name= "password" #password="ngModel" placeholder="Password"  ngModel>
+                <input type="password" name= "password" #password="ngModel" placeholder="Password"  ngModel required pattern ="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&!])[A-Za-z\d@#$%^&!]{8,}">
             </div>
+            <br>
             <div class="remember-forgot">
                 <label>
                     <input type="checkbox">Remember me
@@ -22,7 +25,12 @@
             <div class="register-link">
                 <p>Don't have an account?<a routerLink="/signup"> Register </a></p>
             </div>
-        
+            
+            <p style="font-weight: bold;text-align: center;"  *ngIf ="emailId.errors?.['required'] && emailId.touched"> Enter Email ID</p>
+            <p style="font-weight: bold;text-align: center;"  *ngIf ="emailId.errors?.['email'] && emailId.touched"> Enter proper Email ID</p>
+            <p style="font-weight: bold;text-align: center;"  *ngIf ="password.errors?.['required'] && password.touched"> Enter password</p>
+            <p style="font-weight: bold;text-align: center;"  *ngIf ="password.errors?.['pattern'] && password.touched"> Password Must contain one Special Character,One UpperCase,One LowerCase,One Number, Min Length of 8 </p>
     </div>
 </form>
+
 </body>

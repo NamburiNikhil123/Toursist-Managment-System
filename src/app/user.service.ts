@@ -6,9 +6,11 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
+
   registerUser(user: any): any {
     return this.http.post('registerUser', user);
   }
+
   loginStatus: Subject<any>;
   isUserLogged: boolean;
 
@@ -25,7 +27,7 @@ export class UserService {
   }
 
 userLogin(loginForm: any) {
-  return this.http.get("http://localhost:8085/userLogin/" + loginForm.emailId + "/" + loginForm.password).toPromise();
+  return this.http.get("userLogin/" + loginForm.emailId + "/" + loginForm.password).toPromise();
 }
 
  //Login

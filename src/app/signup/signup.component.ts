@@ -11,14 +11,18 @@ export class SignupComponent implements OnInit {
   user: any;
   passwordErrorMessage: string = '';
   passwordMatches: boolean = true;
+  retypepassword: any;
 
   constructor(private service: UserService) {
     this.user = {
       "name": "",
-      "email_id": "",
       "country": "",
+      "emailId": "",
       "gender": "",
+      "phonenumber":"",
       "password": "",
+    }
+    this.retypepassword = {
       "retypepassword": "",
     }
   }
@@ -32,39 +36,43 @@ export class SignupComponent implements OnInit {
 
   validatePassword() {
     const password = this.user.password;
-    const retypePassword = this.user.retypepassword;
-  
+    const retypePassword = this.retypepassword.retypepassword;
+
     if (password !== retypePassword) {
       this.passwordErrorMessage = "Passwords do not match.";
       this.passwordMatches = false;
     } else {
-      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&!])[A-Za-z\d@#$%^&!]{8,}$/;
-  
-      if (!password.match(passwordRegex)) {
-        this.passwordErrorMessage = "Password must have 8 or more characters, including at least one lowercase letter, one uppercase letter, one digit, and one special character.";
-        this.passwordMatches = false;
-      } else {
-        this.passwordErrorMessage = "";
-        this.passwordMatches = true;
-      }
+      this.passwordErrorMessage = "";
+      this.passwordMatches = true;
     }
   }
-  
 
   register() {
     // Make sure validatePassword() has been called to update the passwordMatches value
     this.validatePassword();
-    
+  
     if (this.passwordMatches) {
-      // Passwords match and meet criteria
-      console.log(this.user);
+      // Passwords match
+      alert("Employee Registration Success");
       this.service.registerUser(this.user).subscribe((data: any) => {
         console.log(data);
-        // You can add further logic here, such as redirecting the user after successful registration.
+        // Reset the input fields to clear the data
+        this.user = {
+          "name": "",
+          "country": "",
+          "emailId": "",
+          "gender": "",
+          "phonenumber":"",
+          "password": "",
+        };
+        this.retypepassword = {
+          "retypepassword": "",
+        };
       });
     } else {
-      // Password validation failed, handle or display an error message.
-      console.log("Registration failed: Passwords do not match or criteria not met.");
+      // Password validation failed, handle or display an error message
+      console.log("Registration failed: Passwords do not match.");
     }
   }
+  
 }

@@ -1,5 +1,5 @@
 <body>
-    
+    <form #registerForm="ngForm" (ngSubmit)="register()" novalidate>
     <div class="wrapper">
         
             <h1>REGISTER</h1>
@@ -9,21 +9,23 @@
                     <td>
                         <!--NAME-->
                         <div class="input-box">
-                            <input type="text" name= "name" placeholder="Enter name"  [(ngModel)]="user.name" required>
+                            <input type="text" name= "name" placeholder="Enter name"  [(ngModel)]="user.name" ngModel required >
                         </div>
                     </td>
                     <td>
                         <!--Email-->
                         <div class="input-box">
-                            <input type="email" name = "emailId" placeholder="Enter Email ID"  [(ngModel)]="user.email_id" required>
+                            <input type="email" name = "emailId" #emailId="ngModel" placeholder="Enter Email ID"  [(ngModel)]="user.emailId" ngModel required email="true">
                         </div>
+                        <p style="font-weight: bold;text-align: center;"  *ngIf ="emailId.errors?.['required'] && emailId.touched"> Enter Email ID</p>
+                        <p style="font-weight: bold;text-align: center;"  *ngIf ="emailId.errors?.['email'] && emailId.touched"> Enter proper Email ID</p>
                      </td>
                 </tr>
                 <tr>
             <td>
             
              <!--Gender-->
-             <select name="gender" [(ngModel)]="user.gender">
+             <select name="gender" [(ngModel)]="user.gender" ngModel>
                 <option value="" selected>Select Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -33,16 +35,19 @@
             <td>
             <!-- Password -->
                 <div class="input-box">
-                    <input type="text" name="password" placeholder="Enter Password" [(ngModel)]="user.password" required (keyup)="validatePassword()">
+                    <input type="text" name="password1" #password1="ngModel" placeholder="Enter Password" [(ngModel)]="user.password" required ngModel required pattern ="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&!])[A-Za-z\d@#$%^&!]{8,}">
                 </div>
-                <!--<p class="error-message" *ngIf="passwordErrorMessage">{{passwordErrorMessage}}</p>-->
+
+            <p style="font-weight: bold;text-align: center;"  *ngIf ="password1.errors?.['required'] && password1.touched"> Enter password</p>
+            <p style="font-weight: bold;text-align: center;"  *ngIf ="password1.errors?.['pattern'] && password1.touched"> Password Must contain one Special Character,One UpperCase,One LowerCase,One Number, Min Length of 8 </p>
+                
   
         </td>
         </tr>
         <tr>
         <td>
             <!--Country-->
-            <select class="Country" [(ngModel)]="user.country">
+            <select name="country" [(ngModel)]="user.country" >
                 <option value="" selected>Select Country</option>
                 <option value="{{country.cca3}}" *ngFor="let country of countries">{{country.name.common}}</option>
               </select>
@@ -50,11 +55,22 @@
         <td>
             <!-- Retype Password -->
             <div class="input-box">
-                <input type="password" name="retypepassword" placeholder="Retype Password" [(ngModel)]="user.retypepassword" required (keyup)="validatePassword()">
+                <input type="password" name="retypepassword" placeholder="Retype Password" [(ngModel)]="retypepassword.retypepassword" required (keyup)="validatePassword()" ngModel>
             </div>
             <p class="error-message" *ngIf="!passwordMatches">{{passwordErrorMessage}}</p>
   
         </td>
+        </tr>
+        <tr>
+        <td>
+            <div class="input-box">
+                <input type="text" name="phonenumber" #phonenumber="ngModel" placeholder="Enter Phonenumber" [(ngModel)]="user.phonenumber" required ngModel required pattern="[6789][0-9]{9}">
+            </div>
+            <p style="font-weight: bold;text-align: center;"  *ngIf ="phonenumber.errors?.['required'] && phonenumber.touched"> Enter Phone Number</p>
+            <p style="font-weight: bold;text-align: center;"  *ngIf ="phonenumber.errors?.['pattern'] && phonenumber.touched"> Enter valid Phone Number</p>
+
+        </td>
+        <td></td>
         </tr>
     </table>
             <!--Password verify   
@@ -67,9 +83,10 @@
             </ul>--> 
            
             <div class="input-box">
-            <button type="submit" class="btn" (click)="register()">Register</button>
+            <button type="submit" class="btn" >Register</button>
             </div>
             
         
         </div>
+    </form>
 </body>
